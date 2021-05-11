@@ -1,35 +1,22 @@
 <html>
-
-<head>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <script>
-        XMLHttpRequest.prototype.origOpen = XMLHttpRequest.prototype.open;
-        XMLHttpRequest.prototype.open = function () {
-            //console.log('here')
-            this.origOpen.apply(this, arguments);
-            this.setRequestHeader('X-Forwarded-Host', 'sli.sapcai.eu10.hana.ondemand.com');
-        };
-        var checkElement = async selector => {
-            while (document.querySelector(selector) === null) {
-                await new Promise(resolve => requestAnimationFrame(resolve))
-            }
-            return document.querySelector(selector);
-        };
-    </script>
-
-</head>
-
-<body>
-    <h1>Test Utterances Collector</h1>
-    <script src="https://cdn.cai.tools.sap/webchat/webchat.js" channelId="b4fa70dd-9832-4676-beed-baa97673b6b3"
-        token="a007f5464aa025b87d6ac1cce2d66604" apiRoot="https://api.cai.tools.sap" id="cai-webchat">
+    <head>
+        <script>
+            XMLHttpRequest.prototype.origOpen = XMLHttpRequest.prototype.open;
+            XMLHttpRequest.prototype.open   = function () {
+                //console.log('here')
+                this.origOpen.apply(this, arguments);
+                this.setRequestHeader('X-Forwarded-Host', 'sli.sapcai.eu10.hana.ondemand.com');
+            };
+       </script>
+    </head>
+    <body>
+        <h1>Test Tenant</h1>
+        <script
+        src="https://cdn.cai.tools.sap/webchat/webchat.js"
+        channelId="b4fa70dd-9832-4676-beed-baa97673b6b3"
+        token="a007f5464aa025b87d6ac1cce2d66604"
+        apiRoot="https://api.cai.tools.sap"
+        id="cai-webchat">
         </script>
-    <script>
-        checkElement('.RecastAppExpander').then((selector) => {
-            $(".RecastAppExpander").remove()
-            $(".RecastAppChat").removeClass("close").addClass("open");
-        });
-    </script>
-
+        
 </html>
