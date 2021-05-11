@@ -1,0 +1,22 @@
+<html>
+    <head>
+        <script>
+            XMLHttpRequest.prototype.origOpen = XMLHttpRequest.prototype.open;
+            XMLHttpRequest.prototype.open   = function () {
+                //console.log('here')
+                this.origOpen.apply(this, arguments);
+                this.setRequestHeader('X-Forwarded-Host', 'sli.sapcai.eu10.hana.ondemand.com');
+            };
+       </script>
+    </head>
+    <body>
+        <h1>Test Tenant</h1>
+        <script
+src="https://cdn.cai.tools.sap/webchat/webchat.js"
+channelId="65818765-e23b-4cb9-8157-76241c077bfd"
+token="480669da73125a19a1ede4798c676567"
+apiRoot="https://api.cai.tools.sap"
+id="cai-webchat">
+</script>
+        
+</html>
